@@ -5,8 +5,8 @@ Oklab color in Typescript
 From [Björn Ottosson, A perceptual color space for image processing] (https://bottosson.github.io/posts/oklab/)
 
 "L" is luminosity,  
-"a" runs from green (0.0) to red (1.0)  
-"b" runs from blue (0.0) to yellow (1.0)  
+"a" runs from green to red  
+"b" runs from blue to yellow  
 
 ```javascript
 import { toOklab, rgbString } from '@butterwell/oklab';
