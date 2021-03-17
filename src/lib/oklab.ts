@@ -1,4 +1,4 @@
-import * as d3 from 'd3-color'; // For color conversion
+import { Color, rgb } from 'd3-color'; // For color conversion
 
 //See https://bottosson.github.io/posts/oklab/
 //and https://observablehq.com/@fil/oklab-color-space
@@ -10,7 +10,7 @@ export type oklab = {
 };
 
 export const toOklab = (color: string): oklab => {
-  const c = d3.rgb(color); // Handle nearly any type of color string
+  const c = rgb(color); // Handle nearly any type of color string
   const r = gamma_inv(c.r / 255);
   const g = gamma_inv(c.g / 255);
   const b = gamma_inv(c.b / 255);
@@ -26,12 +26,12 @@ export const toOklab = (color: string): oklab => {
   };
 };
 
-export const toD3Color = ({ L, a, b }: oklab): d3.Color => {
+export const toD3Color = ({ L, a, b }: oklab): Color => {
   const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3;
   const m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3;
   const s = (L - 0.0894841775 * a - 1.291485548 * b) ** 3;
 
-  return d3.rgb(
+  return rgb(
     255 * gamma(+4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s),
     255 * gamma(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s),
     255 * gamma(-0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s)
