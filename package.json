@@ -1,6 +1,6 @@
 {
   "name": "@butterwell/oklab",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "Oklab color",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
