@@ -39,7 +39,7 @@
     "node": ">=10"
   },
   "dependencies": {
-    "@types/d3-color": "^2.0.1",
+    "@types/d3": "^6.3.0",
     "d3-color": "^2.0.0"
   },
   "devDependencies": {
