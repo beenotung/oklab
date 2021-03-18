@@ -29,8 +29,7 @@ export const toOklab = (c: rgb): oklab => {
   };
 };
 
-// Fractional
-export const toRgb = ({ L, a, b }: oklab): rgb => {
+export const toFractionalRgb = ({ L, a, b }: oklab): rgb => {
   const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3;
   const m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3;
   const s = (L - 0.0894841775 * a - 1.291485548 * b) ** 3;
@@ -42,26 +41,52 @@ export const toRgb = ({ L, a, b }: oklab): rgb => {
   };
 };
 
-function bound(c: number): number {
-  return c < 0 ? 0 : c > 255 ? 255 : c;
+export const toRgb = (ok: oklab): rgb => {
+  return normalizeRgb(toFractionalRgb(ok));
+};
+
+function clamp(c: number): number {
+  const cc = Math.round(c);
+  return cc < 0 ? 0 : cc > 255 ? 255 : cc;
 }
+
+export const normalizeRgb = (rgb: rgb): rgb => {
+  const r = clamp(rgb.r);
+  const g = clamp(rgb.g);
+  const b = clamp(rgb.b);
+  return { r, g, b };
+};
 
 export const rgbString = (ok: oklab): string => {
   const rgb = toRgb(ok);
-  const r = bound(Math.round(rgb.r));
-  const g = bound(Math.round(rgb.g));
-  const b = bound(Math.round(rgb.b));
-
-  return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+  return 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')';
 };
 
-function inBounds(c: number): boolean {
-  return c >= 0 && c <= 255;
-}
+// function stable(ok: oklab): boolean {
+//   const rgbA = toRgb(ok)
+//   const back = toOklab(rgbA)
+//   const rgbB = toRgb(back)
+//   return rgbA.r == rgbB.r && rgbA.g == rgbB.g && rgbA.b == rgbB.b
+// }
 
-export const outOfRgbBounds = (ok: oklab): boolean => {
-  const rgb = toRgb(ok);
-  return inBounds(rgb.r) && inBounds(rgb.g) && inBounds(rgb.b);
+/**
+ * Minimum and maximum L, a, and b values
+ * (as seen from all the possible conversions from rgb)
+ */
+
+export const minMax = {
+  L: {
+    min: 0,
+    max: 0.9999999934735462,
+  },
+  a: {
+    min: -0.23388757418790818,
+    max: 0.27621639742350523,
+  },
+  b: {
+    min: -0.3115281476783751,
+    max: 0.19856975465179516,
+  },
 };
 
 // gamma and gamma_inv from https://observablehq.com/@fil/oklab-color-space
