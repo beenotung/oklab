@@ -1,7 +1,11 @@
-import * as d3 from 'd3-color'; // For color conversion
-
 //See https://bottosson.github.io/posts/oklab/
 //and https://observablehq.com/@fil/oklab-color-space
+
+export type rgb = {
+  readonly r: number;
+  readonly g: number;
+  readonly b: number;
+};
 
 export type oklab = {
   readonly L: number;
@@ -9,8 +13,7 @@ export type oklab = {
   readonly b: number;
 };
 
-export const toOklab = (color: string): oklab => {
-  const c = d3.rgb(color); // Handle nearly any type of color string
+export const toOklab = (c: rgb): oklab => {
   const r = gamma_inv(c.r / 255);
   const g = gamma_inv(c.g / 255);
   const b = gamma_inv(c.b / 255);
@@ -26,20 +29,39 @@ export const toOklab = (color: string): oklab => {
   };
 };
 
-export const toD3Color = ({ L, a, b }: oklab): d3.Color => {
+// Fractional
+export const toRgb = ({ L, a, b }: oklab): rgb => {
   const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3;
   const m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3;
   const s = (L - 0.0894841775 * a - 1.291485548 * b) ** 3;
 
-  return d3.rgb(
-    255 * gamma(+4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s),
-    255 * gamma(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s),
-    255 * gamma(-0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s)
-  );
+  return {
+    r: 255 * gamma(+4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s),
+    g: 255 * gamma(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s),
+    b: 255 * gamma(-0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s),
+  };
 };
 
+function bound(c: number): number {
+  return c < 0 ? 0 : c > 255 ? 255 : c;
+}
+
 export const rgbString = (ok: oklab): string => {
-  return toD3Color(ok).toString();
+  const rgb = toRgb(ok);
+  const r = bound(Math.round(rgb.r));
+  const g = bound(Math.round(rgb.g));
+  const b = bound(Math.round(rgb.b));
+
+  return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+};
+
+function inBounds(c: number): boolean {
+  return c >= 0 && c <= 255;
+}
+
+export const outOfRgbBounds = (ok: oklab): boolean => {
+  const rgb = toRgb(ok);
+  return inBounds(rgb.r) && inBounds(rgb.g) && inBounds(rgb.b);
 };
 
 // gamma and gamma_inv from https://observablehq.com/@fil/oklab-color-space
