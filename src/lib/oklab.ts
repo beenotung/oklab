@@ -1,5 +1,6 @@
 //See https://bottosson.github.io/posts/oklab/
 //and https://observablehq.com/@fil/oklab-color-space
+//and https://github.com/Butterwell/oklab
 
 export type rgb = {
   readonly r: number;
@@ -13,7 +14,7 @@ export type oklab = {
   readonly b: number;
 };
 
-export const toOklab = (c: rgb): oklab => {
+export const toOklab = (c: rgb, o: oklab): void => {
   const r = gamma_inv(c.r / 255);
   const g = gamma_inv(c.g / 255);
   const b = gamma_inv(c.b / 255);
@@ -22,27 +23,24 @@ export const toOklab = (c: rgb): oklab => {
   const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
   const s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
 
-  return {
-    L: l * +0.2104542553 + m * +0.793617785 + s * -0.0040720468,
-    a: l * +1.9779984951 + m * -2.428592205 + s * +0.4505937099,
-    b: l * +0.0259040371 + m * +0.7827717662 + s * -0.808675766,
-  };
+  o.L = l * +0.2104542553 + m * +0.793617785 + s * -0.0040720468;
+  o.a = l * +1.9779984951 + m * -2.428592205 + s * +0.4505937099;
+  o.b = l * +0.0259040371 + m * +0.7827717662 + s * -0.808675766;
 };
 
-export const toFractionalRgb = ({ L, a, b }: oklab): rgb => {
+const toFractionalRgb = ({ L, a, b }: oklab, c: rgb): void => {
   const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3;
   const m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3;
   const s = (L - 0.0894841775 * a - 1.291485548 * b) ** 3;
 
-  return {
-    r: 255 * gamma(+4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s),
-    g: 255 * gamma(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s),
-    b: 255 * gamma(-0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s),
-  };
+  c.r = 255 * gamma(+4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s);
+  c.g = 255 * gamma(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s);
+  c.b = 255 * gamma(-0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s);
 };
 
-export const toRgb = (ok: oklab): rgb => {
-  return normalizeRgb(toFractionalRgb(ok));
+export const toRgb = (ok: oklab, c: rgb): void => {
+  toFractionalRgb(ok, c);
+  normalizeRgb(c);
 };
 
 function clamp(c: number): number {
@@ -50,24 +48,16 @@ function clamp(c: number): number {
   return cc < 0 ? 0 : cc > 255 ? 255 : cc;
 }
 
-export const normalizeRgb = (rgb: rgb): rgb => {
-  const r = clamp(rgb.r);
-  const g = clamp(rgb.g);
-  const b = clamp(rgb.b);
-  return { r, g, b };
+const normalizeRgb = (c: rgb): void => {
+  c.r = clamp(c.r);
+  c.g = clamp(c.g);
+  c.b = clamp(c.b);
 };
 
 export const rgbString = (ok: oklab): string => {
   const rgb = toRgb(ok);
   return 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')';
 };
-
-// function stable(ok: oklab): boolean {
-//   const rgbA = toRgb(ok)
-//   const back = toOklab(rgbA)
-//   const rgbB = toRgb(back)
-//   return rgbA.r == rgbB.r && rgbA.g == rgbB.g && rgbA.b == rgbB.b
-// }
 
 /**
  * Minimum and maximum L, a, and b values
