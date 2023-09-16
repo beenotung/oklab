@@ -2,7 +2,7 @@
 
 Convert between RGB and Oklab color space
 
-From [Björn Ottosson, A perceptual color space for image processing] (https://bottosson.github.io/posts/oklab/)
+From [Björn Ottosson, A perceptual color space for image processing](https://bottosson.github.io/posts/oklab/) and [Christopher Buck, Typescript oklab](https://github.com/Butterwell/oklab)
 
 ## Features
 
