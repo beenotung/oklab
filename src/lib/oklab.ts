@@ -14,7 +14,11 @@ export type oklab = {
   b: number;
 };
 
-export const toOklab = (c: rgb, o: oklab): void => {
+export const new_rgb = (): rgb => ({ r: 0, g: 0, b: 0 });
+
+export const new_oklab = (): oklab => ({ L: 0, a: 0, b: 0 });
+
+export const rgb_to_oklab = (c: rgb, o: oklab): void => {
   const r = gamma_inv(c.r / 255);
   const g = gamma_inv(c.g / 255);
   const b = gamma_inv(c.b / 255);
@@ -38,7 +42,7 @@ const toFractionalRgb = ({ L, a, b }: oklab, c: rgb): void => {
   c.b = 255 * gamma(-0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s);
 };
 
-export const toRgb = (ok: oklab, c: rgb): void => {
+export const oklab_to_rgb = (ok: oklab, c: rgb): void => {
   toFractionalRgb(ok, c);
   normalizeRgb(c);
 };
@@ -54,9 +58,16 @@ const normalizeRgb = (c: rgb): void => {
   c.b = clamp(c.b);
 };
 
-export const rgbString = (ok: oklab): string => {
-  const rgb = toRgb(ok);
-  return 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')';
+export const oklab_to_css_string = (ok: oklab, alpha?: number): string => {
+  if (typeof alpha != 'number') return `oklab(${ok.L}, ${ok.a}, ${ok.b})`;
+  if (alpha > 1) return `oklab(${ok.L}, ${ok.a}, ${ok.b} / ${alpha}%)`;
+  return `oklab(${ok.L}, ${ok.a}, ${ok.b} / ${alpha})`;
+};
+
+export const rgb_to_css_string = (c: rgb, alpha?: number): string => {
+  if (typeof alpha != 'number') return `rgb(${c.r}, ${c.g}, ${c.b})`;
+  if (alpha > 1) return `rgb(${c.r}, ${c.g}, ${c.b} / ${alpha}%)`;
+  return `rgb(${c.r}, ${c.g}, ${c.b} / ${alpha})`;
 };
 
 /**
