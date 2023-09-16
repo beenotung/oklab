@@ -3,15 +3,15 @@
 //and https://github.com/Butterwell/oklab
 
 export type rgb = {
-  readonly r: number;
-  readonly g: number;
-  readonly b: number;
+  r: number;
+  g: number;
+  b: number;
 };
 
 export type oklab = {
-  readonly L: number;
-  readonly a: number;
-  readonly b: number;
+  L: number;
+  a: number;
+  b: number;
 };
 
 export const toOklab = (c: rgb, o: oklab): void => {
