@@ -41,7 +41,7 @@ Here is lightness of the HSV plot, as predicted by Oklab:
 
 ## Installation
 
-Import as
+Import as commonjs package from nodejs / frontend project
 
 ```bash
 npm install oklab.ts
@@ -51,8 +51,10 @@ npm install oklab.ts
 import * as oklab from 'oklab.ts'
 import { rgb_to_oklab } from 'oklab.ts'
 
-oklab.oklab_to_rgb
+console.log(oklab.oklab_to_rgb)
 ```
+
+Or import as plain javascript in browser
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/oklab.ts/dist/browser.js"></script>
@@ -61,11 +63,14 @@ oklab.oklab_to_rgb
 </script>
 ```
 
+Or import as ES Module from browser
+
 ```html
 <script type="module">
   // use jsdelivr CDN
   import { oklab_to_rgb } from 'https://cdn.jsdelivr.net/npm/oklab.ts/dist/esm.js'
   console.log(oklab_to_rgb)
+
   // or use unpkg CDN
   import * as oklab from 'https://unpkg.com/oklab.ts/dist/esm.js'
   console.log(oklab.rgb_to_oklab)
