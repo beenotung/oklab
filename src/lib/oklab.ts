@@ -75,7 +75,7 @@ export const rgb_to_css_string = (c: rgb, alpha?: number): string => {
  * (as seen from all the possible conversions from rgb)
  */
 
-export const minMax = {
+export const range = {
   L: {
     min: 0,
     max: 0.9999999934735462,

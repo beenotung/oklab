@@ -37,16 +37,14 @@ test('between', (t) => {
   rgb_to_oklab({ r: 0, g: 255, b: 0 }, oklab);
   const green = { ...oklab };
 
-  const between = {
-    L: (gray.L + green.L) / 2,
-    a: (gray.a + green.a) / 2,
-    b: (gray.b + green.b) / 2,
-  };
+  oklab.L = (gray.L + green.L) / 2;
+  oklab.a = (gray.a + green.a) / 2;
+  oklab.b = (gray.b + green.b) / 2;
 
-  const rgb = new_rgb();
-  oklab_to_rgb(between, rgb);
+  const between = new_rgb();
+  oklab_to_rgb(oklab, between);
 
-  t.is(rgb_to_css_string(rgb), 'rgb(122, 205, 116)');
+  t.is(rgb_to_css_string(between), 'rgb(122, 205, 116)');
 });
 
 test('to css string', (t) => {
