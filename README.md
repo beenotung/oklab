@@ -57,34 +57,19 @@ oklab.oklab_to_rgb
 ## Usage Example
 
 ```typescript
-import {
-  new_oklab,
-  new_rgb,
-  oklab_to_rgb,
-  rgb_to_css_string,
-  rgb_to_oklab,
-} from 'oklab.ts'
+import { hex_to_rgb, rgb_to_oklab, new_oklab } from 'oklab.ts'
 
-const oklab = new_oklab()
+let rgb = hex_to_rgb('#c0ffee')
+console.log(rgb)
+// { r: 192, g: 255, b: 0 }
 
-rgb_to_oklab({ r: 153, g: 153, b: 153 }, oklab)
-const gray = { ...oklab }
+console.log(rgb_to_oklab(rgb))
+// { L: 0.923, a: -0.136, b: 0.19 }
 
-rgb_to_oklab({ r: 0, g: 255, b: 0 }, oklab)
-const green = { ...oklab }
-
-oklab.L = (gray.L + green.L) / 2
-oklab.a = (gray.a + green.a) / 2
-oklab.b = (gray.b + green.b) / 2
-
-const between = new_rgb()
-oklab_to_rgb(oklab, between)
-
-rgb_to_css_string(between) == 'rgb(122, 205, 116)'
-
-//    gray: rgb(153, 153, 153)
-//   green: rgb(  0, 255,   0)
-// between: rgb(122, 205, 116)
+let oklab = new_oklab()
+rgb_to_oklab(rgb, oklab)
+console.log(oklab)
+// { L: 0.923, a: -0.136, b: 0.19 }
 ```
 
 Details see [examples/between.ts](./examples/between.ts) and [oklab.spec.ts](./src/lib/oklab.spec.ts)

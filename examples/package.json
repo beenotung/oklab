@@ -16,6 +16,6 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@beenotung/oklab": "link:.."
+    "oklab.ts": "link:.."
   }
 }

@@ -7,7 +7,7 @@ import {
   rgb,
   rgb_to_css_string,
   rgb_to_oklab,
-} from '@beenotung/oklab'
+} from 'oklab.ts'
 
 const gray: rgb = { r: 153, g: 153, b: 153 }
 const green: rgb = { r: 0, g: 255, b: 0 }
