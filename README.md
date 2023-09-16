@@ -1,17 +1,22 @@
-# oklab
+# oklab.ts
 
-Convert between RGB and Oklab color space memory-efficiently in Typescript
+Convert between RGB and Oklab color space
 
 From [Björn Ottosson, A perceptual color space for image processing] (https://bottosson.github.io/posts/oklab/)
 
-Implemented with in-place update to reduce memory overhead.
+## Features
+
+- support in-place update to reduce memory overhead
+- support functional style (return new object if output object is not given)
+- out-of-the-box typescript support
+- support both node.js and browser (available on CDN)
 
 ## About Oklab color space
 
 Oklab color consists of three components:
 
 "L" is luminosity,
-"a" runs from green to red
+"a" runs from green to red,
 "b" runs from blue to yellow
 
 The Oklab color space is a perceptually uniform color space developed by Björn Ottosson. It attempts to fit the human visual system, offering a more accurate representation of color differences as perceived by humans. The space is designed in a way that similar colors are close together, making it easier to work with than more traditional color spaces like RGB.
@@ -21,27 +26,31 @@ The Oklab color space is a perceptually uniform color space developed by Björn 
 Import as
 
 ```bash
-npm install @beenotung/oklab
+npm install oklab.ts
 ```
 
 ```typescript
-import * as oklab from '@beenotung/oklab'
-import { rgb_to_oklab } from '@beenotung/oklab'
+import * as oklab from 'oklab.ts'
+import { rgb_to_oklab } from 'oklab.ts'
 
 oklab.oklab_to_rgb
 ```
 
 ```html
-<script src="https://unpkg.com/@beenotung/oklab/build/umd/oklab.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/oklab.ts/dist/browser.js"></script>
 <script>
-  console.log(oklab)
+  console.log(oklab.rgb_to_oklab)
 </script>
 ```
 
 ```html
 <script type="module">
-  import * as oklab from 'https://unpkg.com/@beenotung/oklab@1.2.0/build/module/index.js'
-  console.log(oklab)
+  // use jsdelivr CDN
+  import { oklab_to_rgb } from 'https://cdn.jsdelivr.net/npm/oklab.ts/dist/esm.js'
+  console.log(oklab_to_rgb)
+  // or use unpkg CDN
+  import * as oklab from 'https://unpkg.com/oklab.ts/dist/esm.js'
+  console.log(oklab.rgb_to_oklab)
 </script>
 ```
 
@@ -54,7 +63,7 @@ import {
   oklab_to_rgb,
   rgb_to_css_string,
   rgb_to_oklab,
-} from '@beenotung/oklab'
+} from 'oklab.ts'
 
 const oklab = new_oklab()
 

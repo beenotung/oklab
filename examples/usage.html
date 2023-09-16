@@ -1,4 +1,6 @@
 <script type="module">
-  import * as oklab from 'https://unpkg.com/@beenotung/oklab@2.0.0/build/module/index.js'
-  console.log(oklab)
+  import * as oklab from 'https://unpkg.com/oklab.ts/dist/esm.js'
+  import { oklab_to_rgb } from 'https://cdn.jsdelivr.net/npm/oklab.ts/dist/esm.js'
+  console.log(oklab.rgb_to_oklab)
+  console.log(oklab_to_rgb)
 </script>
