@@ -21,6 +21,24 @@ Oklab color consists of three components:
 
 The Oklab color space is a perceptually uniform color space developed by Björn Ottosson. It attempts to fit the human visual system, offering a more accurate representation of color differences as perceived by humans. The space is designed in a way that similar colors are close together, making it easier to work with than more traditional color spaces like RGB.
 
+### Comparing Oklab to HSV
+
+(Source: https://bottosson.github.io/posts/oklab/)
+
+Here’s an Oklab color gradient with varying hue and constant lightness and chroma.
+
+![Oklab varying hue plot](https://bottosson.github.io/img/oklab/hue_oklab.png)
+
+Compare this to a similar plot of a HSV color gradient with varying hue and constant value and saturation (HSV using the sRGB color space).
+
+![HSV varying hue plot](https://bottosson.github.io/img/oklab/hue_hsv.png)
+
+The gradient is quite uneven and there are clear differences in lightness for different hues. Yellow, magenta and cyan appear much lighter than red and blue.
+
+Here is lightness of the HSV plot, as predicted by Oklab:
+
+![HSV varying lightness plot](https://bottosson.github.io/img/oklab/hue_hsv_lightness.png)
+
 ## Installation
 
 Import as
