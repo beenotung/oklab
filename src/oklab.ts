@@ -94,6 +94,20 @@ export function rgb_to_css_string(c: rgb, alpha?: number): string {
   return `rgb(${c.r}, ${c.g}, ${c.b} / ${alpha})`
 }
 
+export function hex_to_rgb(hex: string): rgb
+export function hex_to_rgb(hex: string, c: rgb): void
+export function hex_to_rgb(hex: string, c?: rgb): void | rgb {
+  if (!c) {
+    c = new_rgb()
+    hex_to_rgb(hex, c)
+    return c
+  }
+
+  c.r = parseInt(hex.slice(1, 3), 16)
+  c.g = parseInt(hex.slice(3, 5), 16)
+  c.g = parseInt(hex.slice(3, 5), 16)
+}
+
 /**
  * Minimum and maximum L, a, and b values
  * (as seen from all the possible conversions from rgb)

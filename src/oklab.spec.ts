@@ -1,5 +1,6 @@
 import { expect } from 'chai'
 import {
+  hex_to_rgb,
   new_oklab,
   new_rgb,
   oklab,
@@ -31,6 +32,10 @@ test('convert between rgb and oklab', () => {
   test(0, 0, 0)
   test(255, 255, 255)
   test(128, 0, 128)
+})
+
+test('convert from hex', () => {
+  t.is(hex_to_rgb('#ffaa00'), { r: 255, g: 170, b: 0 })
 })
 
 test('between', () => {
