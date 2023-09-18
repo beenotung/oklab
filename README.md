@@ -104,7 +104,7 @@ Details see [examples/between.ts](./examples/between.ts) and [oklab.spec.ts](./s
 
 ## License
 
-This project is forked from [Butterwell's oklab](https://github.com/Butterwell/oklab) licensed under the [MIT license](./LICENSE-MIT)
+This project is forked from [Butterwell's oklab](https://github.com/Butterwell/oklab) licensed under the [MIT license](./LICENSE)
 
 This project is then licensed with [BSD-2-Clause](./LICENSE)
 
