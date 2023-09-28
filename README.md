@@ -5,7 +5,6 @@ Convert between RGB and Oklab color space
 [![npm Package Version](https://img.shields.io/npm/v/oklab.ts)](https://www.npmjs.com/package/oklab.ts)
 [![Minified Package Size](https://img.shields.io/bundlephobia/min/oklab.ts)](https://bundlephobia.com/package/oklab.ts)
 [![Minified and Gzipped Package Size](https://img.shields.io/bundlephobia/minzip/oklab.ts)](https://bundlephobia.com/package/oklab.ts)
-[![npm Package Downloads](https://img.shields.io/npm/dm/oklab.ts)](https://www.npmtrends.com/oklab.ts)
 
 From [Björn Ottosson, A perceptual color space for image processing](https://bottosson.github.io/posts/oklab/) and [Christopher Buck, Typescript oklab](https://github.com/Butterwell/oklab)
 
