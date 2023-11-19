@@ -121,6 +121,14 @@ image.onload = () => {
 }
 
 function calcMaxSize() {
+  if (
+    typeof CSS !== 'undefined' &&
+    typeof CSS.supports == 'function' &&
+    !CSS.supports('max-height', '100dvh')
+  ) {
+    sizeBox.style.width = '100vw'
+    sizeBox.style.height = '100vh'
+  }
   let margin = +getComputedStyle(document.body).margin.replace('px', '') || 0
   let rect = sizeBox.getBoundingClientRect()
   let w = (rect.width - margin * 2) / 3
