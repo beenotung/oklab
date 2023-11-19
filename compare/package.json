@@ -7,13 +7,19 @@
   "devDependencies": {
     "@types/node": "^20.9.2",
     "buffer": "^5.5.0||^6.0.0",
+    "npm-run-all": "^4.1.5",
     "parcel": "^2.10.3",
+    "surge": "^0.23.1",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"
   },
   "scripts": {
     "test": "tsc --noEmit",
-    "build": "tsc -p ."
+    "deploy": "run-s test clean build rename upload",
+    "clean": "rm -rf dist",
+    "build": "parcel build split.html",
+    "rename": "mv dist/split.html dist/index.html",
+    "upload": "surge dist https://oklab.surge.sh"
   }
 }
