@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Split Color Channel</title>
+    <link rel="stylesheet" href="split.css" />
+  </head>
+  <body>
+    <div>
+      <input type="file" id="fileInput" />
+    </div>
+    <div class="v-box">
+      <div class="h-box">
+        <img id="image" />
+        <canvas id="rawCanvas"></canvas>
+      </div>
+      <div class="h-box">
+        <canvas id="redCanvas"></canvas>
+        <canvas id="greenCanvas"></canvas>
+        <canvas id="blueCanvas"></canvas>
+      </div>
+      <div class="h-box">
+        <canvas id="lCanvas"></canvas>
+        <canvas id="aCanvas"></canvas>
+        <canvas id="bCanvas"></canvas>
+      </div>
+    </div>
+    <script type="module" src="split.ts"></script>
+  </body>
+</html>

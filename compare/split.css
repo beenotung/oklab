@@ -1,0 +1,39 @@
+* {
+  outline: 1px solid black;
+  width: fit-content;
+  height: fit-content;
+}
+body {
+  background-color: #808080;
+  /* animation: bg 10s linear alternate infinite; */
+}
+@keyframes bg {
+  0% {
+    background-color: #3f3f3f;
+    background-color: #000000;
+  }
+  100% {
+    background-color: #c0c0c0;
+    background-color: #ffffff;
+  }
+}
+img {
+  display: none;
+}
+canvas {
+  --max-size: 300px;
+  --max-size: 400px;
+  --max-size: 450px;
+  --max-size: 600px;
+  --max-size: 800px;
+  max-width: var(--max-size);
+  max-height: var(--max-size);
+  image-rendering: pixelated;
+}
+.v-box {
+  display: flex;
+}
+.h-box {
+  display: flex;
+  flex-direction: column;
+}

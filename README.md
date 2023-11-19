@@ -25,6 +25,10 @@ Oklab color consists of three components:
 
 The Oklab color space is a perceptually uniform color space developed by Björn Ottosson. It attempts to fit the human visual system, offering a more accurate representation of color differences as perceived by humans. The space is designed in a way that similar colors are close together, making it easier to work with than more traditional color spaces like RGB.
 
+### Comparing Oklab to RGB
+
+3 illustrations (color gradients and colorful image) on the color channels of RGB and Lab can be seen in [./compare/README.md](./compare/README.md)
+
 ### Comparing Oklab to HSV
 
 (Source: https://bottosson.github.io/posts/oklab/)
