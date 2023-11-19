@@ -1,6 +1,6 @@
 {
   "name": "oklab.ts",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "sideEffects": false,
   "description": "Convert between RGB and Oklab color space",
   "keywords": [
