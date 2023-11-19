@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+let fs = require('fs/promises')
 let esbuild = require('esbuild')
 let { nodeExternalsPlugin } = require('esbuild-node-externals')
 
@@ -40,8 +41,9 @@ Promise.all([
     target: ['chrome58', 'firefox57', 'safari11', 'edge16'],
     plugins: [nodeExternalsPlugin()],
   }),
-]).catch(error => {
-  console.error(error)
-  process.exit(1)
-})
-
+])
+  .then(() => fs.copyFile('./src/oklab.ts', 'dist/oklab.ts'))
+  .catch(error => {
+    console.error(error)
+    process.exit(1)
+  })
