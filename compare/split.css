@@ -20,14 +20,13 @@ body {
 img {
   display: none;
 }
+html {
+  --max-width: 300px;
+  --max-height: 600px;
+}
 canvas {
-  --max-size: 300px;
-  --max-size: 400px;
-  --max-size: 450px;
-  --max-size: 600px;
-  --max-size: 800px;
-  max-width: var(--max-size);
-  max-height: var(--max-size);
+  max-width: var(--max-width);
+  max-height: var(--max-height);
   image-rendering: pixelated;
 }
 .v-box {
@@ -36,4 +35,13 @@ canvas {
 .h-box {
   display: flex;
   flex-direction: column;
+}
+#sizeBox {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  width: 100dvw;
+  height: 100vh;
+  height: 100dvh;
+  pointer-events: none;
 }

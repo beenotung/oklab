@@ -1,6 +1,8 @@
 import { fileToBase64String } from '@beenotung/tslib/file'
 import { new_oklab, new_rgb, range, rgb_to_oklab } from 'oklab.ts/dist/oklab'
 
+declare let sizeBox: HTMLDivElement
+
 declare let fileInput: HTMLInputElement
 
 declare let image: HTMLImageElement
@@ -117,3 +119,17 @@ image.onload = () => {
   aContext.putImageData(aImageData, 0, 0)
   bContext.putImageData(bImageData, 0, 0)
 }
+
+function calcMaxSize() {
+  let margin = +getComputedStyle(document.body).margin.replace('px', '') || 0
+  let rect = sizeBox.getBoundingClientRect()
+  let w = (rect.width - margin * 2) / 3
+  let h =
+    (rect.height - margin * 2 - fileInput.getBoundingClientRect().height) / 3
+  document.documentElement.style.setProperty('--max-width', w + 'px')
+  document.documentElement.style.setProperty('--max-height', h + 'px')
+}
+
+calcMaxSize()
+
+window.onresize = calcMaxSize
