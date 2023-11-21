@@ -82,16 +82,26 @@ function normalizeRgb(c: rgb): void {
   c.b = clamp(c.b)
 }
 
+/**
+ * @example "oklab(0.5 0.2 0.1)"
+ * @example "oklab(0.5 0.2 0.1 / 50%)"
+ * @example "oklab(0.5 0.2 0.1 / 0.5)"
+ */
 export function oklab_to_css_string(ok: oklab, alpha?: number): string {
-  if (typeof alpha != 'number') return `oklab(${ok.L}, ${ok.a}, ${ok.b})`
-  if (alpha > 1) return `oklab(${ok.L}, ${ok.a}, ${ok.b} / ${alpha}%)`
-  return `oklab(${ok.L}, ${ok.a}, ${ok.b} / ${alpha})`
+  if (typeof alpha != 'number') return `oklab(${ok.L} ${ok.a} ${ok.b})`
+  if (alpha > 1) return `oklab(${ok.L} ${ok.a} ${ok.b} / ${alpha}%)`
+  return `oklab(${ok.L} ${ok.a} ${ok.b} / ${alpha})`
 }
 
+/**
+ * @example "rgb(20 80 120)"
+ * @example "rgb(20 80 120 / 50%)"
+ * @example "rgb(20 80 120 / 0.5)"
+ */
 export function rgb_to_css_string(c: rgb, alpha?: number): string {
-  if (typeof alpha != 'number') return `rgb(${c.r}, ${c.g}, ${c.b})`
-  if (alpha > 1) return `rgb(${c.r}, ${c.g}, ${c.b} / ${alpha}%)`
-  return `rgb(${c.r}, ${c.g}, ${c.b} / ${alpha})`
+  if (typeof alpha != 'number') return `rgb(${c.r} ${c.g} ${c.b})`
+  if (alpha > 1) return `rgb(${c.r} ${c.g} ${c.b} / ${alpha}%)`
+  return `rgb(${c.r} ${c.g} ${c.b} / ${alpha})`
 }
 
 export function hex_to_rgb(hex: string): rgb

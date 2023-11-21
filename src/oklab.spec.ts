@@ -25,7 +25,7 @@ test('convert between rgb and oklab', () => {
     rgb.b = b
     rgb_to_oklab(rgb, oklab)
     oklab_to_rgb(oklab, rgb)
-    t.is(rgb_to_css_string(rgb), `rgb(${r}, ${g}, ${b})`)
+    t.is(rgb_to_css_string(rgb), `rgb(${r} ${g} ${b})`)
     t.is(oklab_to_rgb(rgb_to_oklab({ r, g, b })), { r, g, b })
   }
 
@@ -54,21 +54,21 @@ test('between', () => {
   const between = new_rgb()
   oklab_to_rgb(oklab, between)
 
-  t.is(rgb_to_css_string(between), 'rgb(122, 205, 116)')
+  t.is(rgb_to_css_string(between), 'rgb(122 205 116)')
 })
 
 test('to css string', () => {
-  t.is(rgb_to_css_string({ r: 2, g: 3, b: 4 }), 'rgb(2, 3, 4)')
-  t.is(rgb_to_css_string({ r: 2, g: 3, b: 4 }, 0.5), 'rgb(2, 3, 4 / 0.5)')
-  t.is(rgb_to_css_string({ r: 2, g: 3, b: 4 }, 50), 'rgb(2, 3, 4 / 50%)')
+  t.is(rgb_to_css_string({ r: 2, g: 3, b: 4 }), 'rgb(2 3 4)')
+  t.is(rgb_to_css_string({ r: 2, g: 3, b: 4 }, 0.5), 'rgb(2 3 4 / 0.5)')
+  t.is(rgb_to_css_string({ r: 2, g: 3, b: 4 }, 50), 'rgb(2 3 4 / 50%)')
 
-  t.is(oklab_to_css_string({ L: 0.1, a: 0.2, b: 0.3 }), 'oklab(0.1, 0.2, 0.3)')
+  t.is(oklab_to_css_string({ L: 0.1, a: 0.2, b: 0.3 }), 'oklab(0.1 0.2 0.3)')
   t.is(
     oklab_to_css_string({ L: 0.1, a: 0.2, b: 0.3 }, 0.5),
-    'oklab(0.1, 0.2, 0.3 / 0.5)',
+    'oklab(0.1 0.2 0.3 / 0.5)',
   )
   t.is(
     oklab_to_css_string({ L: 0.1, a: 0.2, b: 0.3 }, 50),
-    'oklab(0.1, 0.2, 0.3 / 50%)',
+    'oklab(0.1 0.2 0.3 / 50%)',
   )
 })
