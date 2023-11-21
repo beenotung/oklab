@@ -29,7 +29,7 @@ The Oklab color space is a perceptually uniform color space developed by Björn 
 
 3 illustrations (color gradients and colorful image) on the color channels of RGB and Lab can be seen in [./compare/README.md](./compare/README.md)
 
-Color Channels Visualizer: https://oklab-demo.static.domains
+You can see the color channels of your own images using [./compare/split.ts](./compare/split.ts) hosted on: https://oklab.surge.sh
 
 ### Comparing Oklab to HSV
 

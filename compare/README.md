@@ -10,6 +10,8 @@ For the Lab channels part, there are three rows (top to bottom): luminosity (L),
 
 For each channels part, white color represents the highest value or intensity in that channel; black color represents the lowest value; gray-scale gradient represent the values in-between.
 
+You can see the color channels of your own images using [split.ts](./split.ts) hosted on: https://oklab.surge.sh
+
 ## Red-Green Gradient
 
 ![red-green color channels](images/red-green-rgb-lab.webp)
