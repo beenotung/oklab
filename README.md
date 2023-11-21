@@ -107,6 +107,73 @@ console.log(oklab)
 
 Details see [examples/between.ts](./examples/between.ts) and [oklab.spec.ts](./src/lib/oklab.spec.ts)
 
+## Typescript Types
+
+Below are the exported types, functions and constants from oklab.ts:
+
+```typescript
+export type rgb = {
+  r: number
+  g: number
+  b: number
+}
+
+export type oklab = {
+  L: number
+  a: number
+  b: number
+}
+
+export function new_rgb(): rgb
+
+export function new_oklab(): oklab
+
+export function rgb_to_oklab(c: rgb): oklab
+export function rgb_to_oklab(c: rgb, o: oklab): void
+
+export function oklab_to_rgb(ok: oklab): rgb
+export function oklab_to_rgb(ok: oklab, c: rgb): void
+
+/**
+ * @example "oklab(0.5 0.2 0.1)"
+ * @example "oklab(0.5 0.2 0.1 / 50%)"
+ * @example "oklab(0.5 0.2 0.1 / 0.5)"
+ */
+export function oklab_to_css_string(ok: oklab, alpha?: number): string
+
+/**
+ * @example "rgb(20 80 120)"
+ * @example "rgb(20 80 120 / 50%)"
+ * @example "rgb(20 80 120 / 0.5)"
+ */
+export function rgb_to_css_string(c: rgb, alpha?: number): string
+
+export function hex_to_rgb(hex: string): rgb
+export function hex_to_rgb(hex: string, c: rgb): void
+
+/**
+ * Minimum and maximum L, a, and b values
+ * (as seen from all the possible conversions from rgb)
+ */
+export const range: {
+  L: {
+    min: 0
+    max: 0.9999999934735462
+    range: 0.9999999934735462
+  }
+  a: {
+    min: -0.23388757418790818
+    max: 0.27621639742350523
+    range: 0.5101039716114134
+  }
+  b: {
+    min: -0.3115281476783751
+    max: 0.19856975465179516
+    range: 0.5100979023301703
+  }
+}
+```
+
 ## License
 
 This project is forked from [Butterwell's oklab](https://github.com/Butterwell/oklab) licensed under the [MIT license](./LICENSE)
