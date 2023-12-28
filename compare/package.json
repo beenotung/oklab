@@ -17,7 +17,7 @@
   "scripts": {
     "test": "tsc --noEmit",
     "deploy": "run-s test clean build rename upload",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist .parcel-cache",
     "build": "parcel build split.html",
     "rename": "mv dist/split.html dist/index.html",
     "upload": "surge dist https://oklab.surge.sh"
