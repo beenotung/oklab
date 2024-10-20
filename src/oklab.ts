@@ -125,19 +125,19 @@ export function hex_to_rgb(hex: string, c?: rgb): void | rgb {
 
 export const range = {
   L: {
-    min: 0,
-    max: 0.9999999934735462,
-    range: 0.9999999934735462,
+    min: 0 as const,
+    max: 0.9999999934735462 as const,
+    range: 0.9999999934735462 as const,
   },
   a: {
-    min: -0.23388757418790818,
-    max: 0.27621639742350523,
-    range: 0.5101039716114134,
+    min: -0.23388757418790818 as const,
+    max: 0.27621639742350523 as const,
+    range: 0.5101039716114134 as const,
   },
   b: {
-    min: -0.3115281476783751,
-    max: 0.19856975465179516,
-    range: 0.5100979023301703,
+    min: -0.3115281476783751 as const,
+    max: 0.19856975465179516 as const,
+    range: 0.5100979023301703 as const,
   },
 }
 
