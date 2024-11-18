@@ -115,7 +115,7 @@ export function hex_to_rgb(hex: string, c?: rgb): void | rgb {
 
   c.r = parseInt(hex.slice(1, 3), 16)
   c.g = parseInt(hex.slice(3, 5), 16)
-  c.g = parseInt(hex.slice(3, 5), 16)
+  c.b = parseInt(hex.slice(5, 7), 16)
 }
 
 /**

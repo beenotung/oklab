@@ -35,7 +35,7 @@ test('convert between rgb and oklab', () => {
 })
 
 test('convert from hex', () => {
-  t.is(hex_to_rgb('#ffaa00'), { r: 255, g: 170, b: 0 })
+  t.is(hex_to_rgb('#ffaa11'), { r: 255, g: 170, b: 17 })
 })
 
 test('between', () => {
